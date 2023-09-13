@@ -162,5 +162,9 @@ app.get('/user-places', (req,res) => {
     res.json( await Place.find({owner:id}) );
   });
 });
+app.get('/places', async (req,res) => {
+  // mongoose.connect(process.env.MONGO_URL);
+  res.json( await Place.find() );
+});
 
 app.listen(8001);
