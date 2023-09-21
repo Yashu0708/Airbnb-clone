@@ -7,7 +7,13 @@ export default function LoginPage(){
     const [email,setEmail]=useState('');
     const [password,setPassword]=useState('');
     const [redirect, setRedirect] = useState(false);
-    const {setUser} = useContext(UserContext);
+    const {setUser,ready,user} = useContext(UserContext);
+    if (!ready) {
+        return 'Loading...';
+      }
+      if (ready && user  ) {
+        return <Navigate to={'/'} />
+      }
     async function handleLoginSubmit(ev){
         ev.preventDefault();
         try {

@@ -79,7 +79,7 @@ export default function BookingWidget({place}) {
       <button onClick={bookThisPlace} className="primary mt-4">
         Book this place
         {numberOfNights > 0 && (
-          <span> ${numberOfNights * place.price}</span>
+          <span> Rs {numberOfNights * place.price}</span>
         )}
       </button>
     </div>

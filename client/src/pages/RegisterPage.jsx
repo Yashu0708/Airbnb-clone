@@ -1,11 +1,19 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useContext,useState } from "react";
+import { Link,Navigate } from "react-router-dom";
 import axios from "axios";
+import { UserContext } from "../UserContext";
 
 export default function RegisterPage(){
     const [name,setName] = useState('');
     const [email,setEmail] = useState('');
     const [password,setPassword] = useState('');
+    const {ready,user} = useContext(UserContext);
+    if (!ready) {
+        return 'Loading...';
+      }
+      if (ready && user  ) {
+        return <Navigate to={'/'} />
+      }
      async function registerUser(ev) {
         ev.preventDefault();
         try {
@@ -30,7 +38,7 @@ export default function RegisterPage(){
                 <form className="max-w-md mx-auto" onSubmit={registerUser}>
                     <input type="text" placeholder="Your Name" value={name}
                  onChange={ev => setName(ev.target.value)}/>
-                    <input type="email" placeholder="youar@email.com" value={email}
+                    <input type="email" placeholder="name@email.com" value={email}
                  onChange={ev => setEmail(ev.target.value)} />
                     <input type="password" placeholder="password" value={password}
                  onChange={ev => setPassword(ev.target.value)}  />
